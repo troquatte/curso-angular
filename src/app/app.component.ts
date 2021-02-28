@@ -35,6 +35,15 @@ import { Component, OnInit } from '@angular/core';
       <button (click)="add()"> Add </button>
     -->
 
+    <!--
+    <ng-template [ngIf]="getDados">
+      <h1>{{getDados.nome}}</h1>
+      <h2>{{getDados.idade}}</h2>
+    </ng-template>
+
+    <app-output (enviarDados)="setDados($event)"></app-output>
+    -->
+
 
     <router-outlet></router-outlet>
   `,
@@ -42,9 +51,9 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
 
   public destruir: boolean = true;
-
-
   public addValue: number = 0;
+
+  public getDados: { nome: string, idade: number } | undefined;
 
   constructor() {
   }
@@ -58,5 +67,9 @@ export class AppComponent implements OnInit {
 
   public destruirComponent() {
     this.destruir = false;
+  }
+
+  public setDados(event: { nome: string, idade: number }) {
+    this.getDados = event;
   }
 }
